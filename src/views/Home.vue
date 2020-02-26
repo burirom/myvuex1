@@ -18,16 +18,14 @@
 <script>
 // @ is an alias to /src
 import { mapState } from "vuex";
+import { mapGetters } from "vuex";
 export default {
   name: "Home",
   components: {},
   computed: {
-    ...mapState(["count", "todos"])
+    ...mapState(["count"]),
+    ...mapGetters({ todos: "doneTodos" })
   },
-  // computed: mapState({
-  //   count: state => state.count,
-  //   count2: state => state.count2
-  // }),
   methods: {
     inc: function() {
       this.$store.dispatch("incActionCounter");

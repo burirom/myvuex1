@@ -8,8 +8,8 @@ export default new Vuex.Store({
     count: 0,
     count2: 0,
     todos: [
-      { id: 1, user: "のむら", done: true },
-      { id: 2, user: "やすひで", done: false }
+      { id: 1, user: "のむら", text: "テストです", done: true },
+      { id: 2, user: "やすひで", text: "メッセージです", done: false }
     ]
   },
   mutations: {
@@ -31,6 +31,9 @@ export default new Vuex.Store({
   modules: {
   },
   getters: {
-    getcount: state => state.count
+    getcount: state => state.count,
+    doneTodos: state => {
+      return state.todos
+    }
   }
 })
