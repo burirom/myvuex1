@@ -5,6 +5,7 @@
     <div>count:{{count}}</div>
     <button @click="inc">+1</button>
     <button @click="dec">-1</button>
+    <button @click="testinc">テストボタンです(押すとカウントが+1されます。)</button>
 
     <h2 class="subtitle">Todo</h2>
     <div v-for="todo in todos" :key="todo.id">
@@ -19,6 +20,8 @@
 // @ is an alias to /src
 import { mapState } from "vuex";
 import { mapGetters } from "vuex";
+import { mapMutations } from "vuex";
+
 export default {
   name: "Home",
   components: {},
@@ -27,11 +30,15 @@ export default {
     ...mapGetters({ todos: "doneTodos" })
   },
   methods: {
+    ...mapMutations(["incCommiTtest"]),
     inc: function() {
       this.$store.dispatch("incActionCounter");
     },
     dec: function() {
       this.$store.dispatch("decActionCounter");
+    },
+    testinc: function() {
+      this.incCommiTtest();
     }
   }
 };

@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import { SOME_MUTATION } from './mutation-types'
 
 Vue.use(Vuex)
 
@@ -13,19 +14,34 @@ export default new Vuex.Store({
     ]
   },
   mutations: {
-    increment(state) {
-      state.count++;
+    increment(state, payload) {
+      state.count += payload.amount;
     },
-    decrement(state) {
-      state.count--;
+    decrement(state, payload) {
+      state.count -= payload.amount;
+    },
+    [SOME_MUTATION](state, payload) {
+      state.count += payload.amount;
+    },
+    incCommiTtest(state) {
+      state.count++;
     }
   },
   actions: {
     incActionCounter({ commit }) {
-      commit("increment");
+      commit("increment", {
+        amount: 1
+      });
     },
     decActionCounter({ commit }) {
-      commit("decrement");
+      commit("decrement", {
+        amount: 1
+      });
+    },
+    testActionCounter({ commit }) {
+      commit('SOME_MUTATION', {
+        amount: 1
+      });
     }
   },
   modules: {
