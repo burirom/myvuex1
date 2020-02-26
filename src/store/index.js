@@ -7,11 +7,11 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     count: 0,
-    count2: 0,
     todos: [
       { id: 1, user: "のむら", text: "テストです", done: true },
       { id: 2, user: "やすひで", text: "メッセージです", done: false }
-    ]
+    ],
+    text: "成功です"
   },
   mutations: {
     increment(state, payload) {
@@ -25,6 +25,9 @@ export default new Vuex.Store({
     },
     incCommiTtest(state) {
       state.count++;
+    },
+    changeText(state, payload) {
+      state.text = payload.text;
     }
   },
   actions: {
@@ -42,7 +45,18 @@ export default new Vuex.Store({
       commit('SOME_MUTATION', {
         amount: 1
       });
+    },
+    changeActionText({ commit }, updatetext) {
+      commit("changeText", {
+        text: "待ってます..."
+      })
+      setTimeout(() => {
+        commit("changeText", {
+          text: updatetext
+        })
+      }, 1000)
     }
+
   },
   modules: {
   },

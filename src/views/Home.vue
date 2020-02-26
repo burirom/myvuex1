@@ -11,7 +11,12 @@
     <div v-for="todo in todos" :key="todo.id">
       <div>ユーザー名:{{todo.user}}</div>
     </div>
+    <h2 class="subtitle">アクション</h2>
 
+    <div>内容</div>
+    <input type="text" v-model="updatetext" />
+    <button @click="actionbtn">アクションボタン</button>
+    <div>{{text}}</div>
     <!-- <div>count2:{{count2}}</div> -->
   </div>
 </template>
@@ -24,9 +29,14 @@ import { mapMutations } from "vuex";
 
 export default {
   name: "Home",
+  data: function() {
+    return {
+      updatetext: ""
+    };
+  },
   components: {},
   computed: {
-    ...mapState(["count"]),
+    ...mapState(["count", "text"]),
     ...mapGetters({ todos: "doneTodos" })
   },
   methods: {
@@ -39,6 +49,10 @@ export default {
     },
     testinc: function() {
       this.incCommiTtest();
+    },
+    actionbtn: function() {
+      this.$store.dispatch("changeActionText", this.updatetext);
+      this.updatetext = "";
     }
   }
 };
