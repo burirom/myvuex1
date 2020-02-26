@@ -6,7 +6,11 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     count: 0,
-    count2: 0
+    count2: 0,
+    todos: [
+      { id: 1, user: "のむら", done: true },
+      { id: 2, user: "やすひで", done: false }
+    ]
   },
   mutations: {
     increment(state) {
